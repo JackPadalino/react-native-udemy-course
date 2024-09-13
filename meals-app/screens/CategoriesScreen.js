@@ -13,9 +13,10 @@ const CategoriesScreen = () => {
   return (
     <FlatList
       data={CATEGORIES}
+      numColumns={2}
       keyExtractor={(item) => item.id}
       renderItem={renderCategoryItem}
-    ></FlatList>
+    />
   );
 };
 
