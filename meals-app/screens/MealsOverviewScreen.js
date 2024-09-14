@@ -19,10 +19,10 @@ const MealsOverviewScreen = ({ route, navigation }) => {
   // that was set on the 'CategoriesScreen' component. We then further define
   // options using the id passed from the route. This shows how a component can
   // define its own 'route' prop ^^^^^
-  const categoryTitle = CATEGORIES.find((cat) => cat.id === id).title;
+  const category = CATEGORIES.find((cat) => cat.id === id);
   useEffect(() => {
     navigation.setOptions({
-      title: categoryTitle,
+      title: category.title,
     });
   }, [id, navigation]);
 
