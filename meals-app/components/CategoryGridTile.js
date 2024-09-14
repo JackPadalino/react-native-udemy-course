@@ -1,7 +1,25 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const CategoryGridTile = ({ title, color, pressHandler }) => {
+const CategoryGridTile = ({ data }) => {
+  const id = data.id;
+  const title = data.title;
+  const color = data.color;
+
+  const navigation = useNavigation();
+
+  const pressHandler = () => {
+    // passing data to the selected CategoryGridTile component
+    // the first parameter is the name of the screen
+    // second parameter is an object containing the data
+    // we want to pass along - this data is extracted
+    // on the component using 'route' object
+    navigation.navigate("MealsOverview", {
+      id: id,
+    });
+  };
+
   return (
     <View style={styles.gridItem}>
       <Pressable

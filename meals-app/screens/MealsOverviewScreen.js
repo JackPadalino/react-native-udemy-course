@@ -10,23 +10,21 @@ import MealItem from "../components/MealItem";
 
 const MealsOverviewScreen = ({ route, navigation }) => {
   // route = useRoute();
-  const catId = route.params.id;
+  const id = route.params.id;
 
-  const displayedMeals = MEALS.filter((meal) =>
-    meal.categoryIds.includes(catId)
-  );
+  const displayedMeals = MEALS.filter((meal) => meal.categoryIds.includes(id));
 
   // here we are setting information that can be passed as parameters
   // via the routing. We are first using the id from the route.params object
   // that was set on the 'CategoriesScreen' component. We then further define
   // options using the id passed from the route. This shows how a component can
   // define its own 'route' prop ^^^^^
-  const categoryTitle = CATEGORIES.find((cat) => cat.id === catId).title;
+  const categoryTitle = CATEGORIES.find((cat) => cat.id === id).title;
   useEffect(() => {
     navigation.setOptions({
       title: categoryTitle,
     });
-  }, [catId, navigation]);
+  }, [id, navigation]);
 
   const renderMealItem = (data) => {
     return <MealItem data={data.item} />;

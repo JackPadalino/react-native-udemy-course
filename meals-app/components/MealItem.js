@@ -8,10 +8,27 @@ import {
   Platform,
 } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 const MealItem = ({ data }) => {
+  const id = data.id;
+  const imageUrl = data.imageUrl;
+  const title = data.title;
+  const duration = data.duration;
+  const complexity = data.complexity;
+  const affordability = data.affordability;
+
+  const navigation = useNavigation();
+  const pressHandler = () => {
+    navigation.navigate("SelectedMeal", {
+      id: id,
+    });
+  };
+
   return (
     <View style={styles.mealItem}>
       <Pressable
+        onPress={pressHandler}
         style={({ pressed }) => [
           styles.button,
           pressed ? styles.pressed : null,
@@ -19,13 +36,13 @@ const MealItem = ({ data }) => {
       >
         <View style={styles.innerContainer}>
           <View>
-            <Image source={{ uri: data.imageUrl }} style={styles.mealImg} />
-            <Text style={styles.title}>{data.title}</Text>
+            <Image source={{ uri: imageUrl }} style={styles.mealImg} />
+            <Text style={styles.title}>{title}</Text>
           </View>
           <View style={styles.details}>
-            <Text style={styles.detailItem}>{data.duration} minutes</Text>
-            <Text style={styles.detailItem}>{data.complexity}</Text>
-            <Text style={styles.detailItem}>{data.affordability}</Text>
+            <Text style={styles.detailItem}>{duration} minutes</Text>
+            <Text style={styles.detailItem}>{complexity}</Text>
+            <Text style={styles.detailItem}>{affordability}</Text>
           </View>
         </View>
       </Pressable>
