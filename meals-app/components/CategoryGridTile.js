@@ -1,11 +1,11 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
 
-const CategoryGridTile = ({ title, color }) => {
+const CategoryGridTile = ({ title, color, pressHandler }) => {
   return (
     <View style={styles.gridItem}>
       <Pressable
-        onPress={(pressed) => pressed && styles.pressed}
+        onPress={pressHandler}
         style={({ pressed }) => [
           styles.button,
           pressed ? styles.pressed : null,
