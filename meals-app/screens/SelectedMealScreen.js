@@ -1,17 +1,39 @@
 import React, { useEffect } from "react";
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Button,
+} from "react-native";
 import { MEALS } from "../data/dummy-data";
+import { IconButton } from "../components";
 
 const SelectedMealScreen = ({ route, navigation }) => {
   const id = route.params.id;
 
   const displayedMeal = MEALS.find((meal) => meal.id === id);
 
+  const headerButtonHandler = () => {
+    console.log("Pressed");
+  };
+
   useEffect(() => {
     navigation.setOptions({
       title: displayedMeal.title,
+      headerRight: () => {
+        return (
+          <IconButton
+            icon={"star"}
+            size={23}
+            color={"white"}
+            onPress={headerButtonHandler}
+          />
+        );
+      },
     });
-  }, [id, navigation]);
+  }, [id, navigation.headerButtonHandler]);
 
   return (
     <ScrollView style={styles.screenContainer}>
